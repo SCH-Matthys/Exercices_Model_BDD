@@ -1,0 +1,54 @@
+Exercice 1 :
+
+CREATE DATABASE film
+
+CREATE TABLE fiche_film
+(
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    title VARCHAR(255),
+    length INT(11),
+	release_date DATE
+)
+
+INSERT INTO fiche_film (title, length, release_date) 
+VALUES 
+	("The Gentlemen", 113, "2020-01-01"),
+	("Kuzco", 75, "2000-01-01"),
+	("Joker", 122, "2019-01-01"),
+	("Sweeney todd", 116, "2007-01-01"),
+	("Princesse Mononoké", 134, "1997-01-01");
+
+DELETE FROM fiche_film 
+WHERE release_date<"2010-01-01" AND length<120;
+
+Exercice 2 :
+1/
+SELECT ville_nom FROM villes_france_free 
+ORDER BY ville_surface ASC
+LIMIT 5
+
+2/
+SELECT ville_code_postal,ville_population_2010 FROM villes_france_free
+ORDER BY ville_population_2010 DESC
+LIMIT 15
+
+3/
+SELECT ville_departement, ville_nom FROM villes_france_free 
+WHERE ville_nom LIKE "P%"
+
+4/
+SELECT SUM(ville_population_2010) AS ville_departement_total FROM villes_france_free 
+ORDER BY ville_departement
+
+5/
+SELECT ville_nom,ville_population_1999 FROM villes_france_free
+WHERE ville_population_1999 > 20000 ASC
+
+6/
+SELECT REPLACE(ville_longitude_dms, "+", "*") FROM villes_france_free
+
+7/
+SELECT REVERSE(ville_nom),ville_nom,ville_departement FROM villes_france_free 
+WHERE ville_departement LIKE "97%"
+
+8/
