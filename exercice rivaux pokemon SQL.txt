@@ -1,0 +1,162 @@
+CREATE DATABASE ex_rivaux_pokemon
+
+CREATE TABLE type
+(
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    type_name VARCHAR(255)
+)
+CREATE TABLE city
+(
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    city_name VARCHAR(255)
+)
+CREATE TABLE dresseur
+(
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255),
+    age INT(11),
+    city_id INT(11)
+)
+CREATE TABLE pokemon
+(
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255),
+    power INT(11)
+)
+CREATE TABLE liaison
+(
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    dresseur_id INT(11),
+    pokemon_id INT(11)
+)
+CREATE TABLE pokemon_type
+(
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    pokemon_id INT (11),
+    type_id INT (11)
+)
+
+INSERT INTO city (city_name) 
+VALUES 
+	("Kanto"),
+	("Johto"),
+	("Hoenn"),
+	("Sinnoh"),
+	("Unys"),
+	("Kalos"),
+	("Alola"),
+	("Galar");
+
+
+INSERT INTO type (type_name) 
+VALUES 
+	("Acier"),
+	("Combat"),
+	("Dragon"),
+	("Eau"),
+	("Electrique"),
+	("Fee"),
+	("Feu"),
+	("Glace"),
+	("Insecte"),
+	("Normal"),
+	("Plante"),
+	("Poison"),
+	("Psy"),
+	("Roche"),
+	("Sol"),
+	("Spectre"),
+	("Tenebre"),
+	("Vol");
+
+
+INSERT INTO dresseur (name, age, city_id)
+VALUES
+	("Victor", 26, 1),
+	("Christy", 18, 6),
+	("Dianthéa", 32, 7),
+	("Cathy", 48, 1),
+	("Mathis", 16, 7),
+	("Flo", 32, 4);
+
+INSERT INTO pokemon (name, power)
+VALUES
+	("Tentacool", 45),
+    ("Galar", 49),
+    ("Lucario", 55),
+    ("Steelix", 43),
+    ("Pikachu", 40),
+    ("Elector", 65),
+    ("Magikarp", 1),
+    ("Papilusion", 35),
+    ("Rondoudou", 34),
+    ("Togepi", 20);
+
+
+INSERT INTO liaison (dresseur_id, pokemon_id)
+VALUES
+	(1, 1),
+	(1, 2),
+	(2, 3),
+	(2, 4),
+	(2, 5),
+	(3, 6),
+	(4, 5),
+	(4, 1),
+	(4, 7),
+	(5, 8),
+	(5, 3),
+	(6, 2),
+	(6, 9),
+	(6, 10);
+
+
+INSERT INTO pokemon_type (pokemon_id, type_id)
+VALUES
+	(1, 4),
+	(1, 12),
+	(2, 12),
+	(2, 6),
+	(3, 2),
+	(3, 1),
+	(4, 15),
+	(4, 1),
+    (5, 5),
+	(6, 18),
+	(6, 5),
+	(7, 4),
+	(8, 18),
+	(8, 9),
+	(9, 10),
+	(9, 6),
+	(10, 6);
+    
+
+
+EXERCICES 
+:::::::::::::::::::::::///////////////////////////////////:::::::::::::::::::::::
+1/
+UPDATE dresseur
+SET name = REPLACE(name, 'Mathis', 'Gros nul')
+
+2/
+SELECT name, power FROM pokemon
+ou
+SELECT * FROM pokemon
+
+3/ MARCHE PAS 
+SELECT name, age, city.city_name FROM dresseur
+INNER JOIN city ON dresseur.city_id = city.city_name
+WHERE age >= 18 AND age <= 40 and city_name <> "Alola"
+
+4/
+SELECT pokemon.name, type.type_name FROM pokemon
+INNER JOIN pokemon_type ON pokemon.id = pokemon_type.pokemon_id
+INNER JOIN type ON pokemon_type.type_id = type.id
+WHERE type.type_name = "Fee"
+
+5/
+Il est un peu tard la
+
+
+
